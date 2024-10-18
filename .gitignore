@@ -1,0 +1,28 @@
+# Ignorar o diretório do ambiente virtual
+venv/
+
+# Outros exemplos comuns para Python
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Configurações de ambiente
+.env
+*.env
+
+# Arquivos de log
+*.log
+
+# Arquivos de banco de dados SQLite
+*.sqlite3
+
+# Arquivos gerados por IDEs e editores
+.vscode/
+.idea/
+
+# Arquivos de pacotes Python
+*.egg-info/
+dist/
+build/
