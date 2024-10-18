@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload de Arquivos</title>
+</head>
+<body>
+    <h1>Upload de Arquivos</h1>
+    
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>  <!-- Exibe a mensagem de erro -->
+    {% endif %}
+    
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="file" required>
+        <button type="submit">Upload</button>
+    </form>
+
+    <h2>Arquivos Já Carregados:</h2>
+    <ul>
+        {% for file in files %}
+            <li>
+                <a href="{{ file.file.url }}">{{ file.file.name }}</a> - {{ file.upload_date }}  <!-- Use file.file.name -->
+            </li>
+        {% empty %}
+            <li>Nenhum arquivo carregado.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
