@@ -62,7 +62,9 @@
             position: relative;
             left: 50%;
             transform: translate(-50%);
-            font-size: small;
+            li{
+                font-size: small;
+            }
             h6{
                 color: #555B6E;
             }
