@@ -1,0 +1,119 @@
+
+.base {
+    background: #f3f3f3;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    .title{
+        position: relative;
+        display: flex;
+        align-items: flex-start;
+        width: 100%;
+        height: 10%;
+        .title-icon{
+            height: 100%;
+        }
+        .title-word{
+            position: relative;
+            top: 50%;
+            left: 1%;
+            transform: translate(0%, -50%);
+            h1 {
+                margin: 0px;
+                color: #555B6E;
+            }
+        }
+    }
+    .signup-window {
+        position: relative;
+        left: 50%;
+        top: 5%;
+        transform: translate(-50%);
+        min-width: 35em;
+        min-height: 30em;
+        width: 35%;
+        height: auto;
+        border-radius: 20px;
+        background-color: #FAF9F9;
+        flex-direction: column;
+        justify-content: flex-start;
+        .signup-title {
+        position: relative;
+        top: 5%;
+        left: 50%;
+        transform: translate(-50%);
+        width: 161px;
+        height: 86px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        .signup-title-word {
+            border-radius: 80%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: #555b6e;
+        }
+        }
+        .input-area {
+            width: 374px;
+            height: auto;
+            position: relative;
+            left: 50%;
+            transform: translate(-50%);
+            li{
+                font-size: small;
+            }
+            h6{
+                color: #555B6E;
+            }
+            &.username {
+                top: 5%;
+            }
+            &.password {
+                top: 10%;
+            }
+            .input-window {
+                width: 100%;
+                height: 40px;
+                border-radius: 14px;
+                border: 1px solid #555B6E;
+                background-color: #f9f9f9;
+                padding: 10px;
+                color: #555B6E;
+                
+            }
+        }
+        .signup-btn {
+        width: 374px;
+        height: 50px;
+        background-color: #89b0ae;
+        border-radius: 14px;
+        border: 0;
+        position: relative;
+        left: 50%;
+        top: 20%;
+        transform: translate(-50%);
+        font-size: 20px;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        }
+        .login-btn {
+        width: 374px;
+        height: 50px;
+        border: 0;
+        position: relative;
+        left: 50%;
+        top: 20%;
+        transform: translate(-50%);
+        color: #3c91e6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: small;
+        }
+    }
+}
