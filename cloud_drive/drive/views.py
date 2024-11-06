@@ -5,6 +5,13 @@ from .models import File, Folder
 from .forms import FileForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.http import FileResponse
+
+@login_required
+def serve_user_file(request, file_id):
+    file = File.objects.get(id=file_id)
+
+    return FileResponse(open(file.file.path, 'rb'))
 
 @login_required
 def upload_file(request):
@@ -17,6 +24,10 @@ def upload_file(request):
 
             if file.size > 40 * 1024 * 1024:
                 return render(request, "drive/upload.html", {"files": File.objects.filter(owner=request.user), "error": "File is too large"})
+
+            total = sum(file.size for file in request.user.files.all())
+            if total + file.size > 100 * 1024 * 1024:
+                return render(request, "drive/upload.html", {"files": File.objects.filter(owner=request.user), "error": "Storage is full"})
 
             File.objects.create(owner=request.user, file=file, size=file.size, folder=folder if folder_id else None)
             return redirect("upload_file")
@@ -35,7 +46,7 @@ def upload_file(request):
 
     files = File.objects.filter(owner=request.user)
     folders = Folder.objects.filter(owner=request.user)
-    
+
     return render(request, "drive/upload.html", {"files": files, "folders": folders})
 
 def register(request):
@@ -64,3 +75,19 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return redirect("login")
+
+def account_info(request):
+    user = request.user
+    file_counts = {
+        'images': user.files.filter(type='image').count(),
+        'videos': user.files.filter(type='video').count(),
+        'documents': user.files.filter(type='document').count(),
+    }
+    storage_used = sum(file.size for file in user.files.all())
+
+    context = {
+        'user': user,
+        'file_counts': file_counts,
+        'storage_used': storage_used,
+    }
+    return render(request, 'drive/data.html', context)
