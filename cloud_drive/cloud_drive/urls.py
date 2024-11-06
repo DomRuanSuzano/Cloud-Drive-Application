@@ -3,6 +3,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('drive/', include('drive.urls')),  # Incluindo as URLs do app drive
+    path('', include('drive.urls')),  # Incluindo as URLs do app drive
 
 ]

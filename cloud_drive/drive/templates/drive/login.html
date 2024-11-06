@@ -10,7 +10,7 @@
 </head>
 <body class="base">
     <div class="title">
-        <img src="{% static 'images/logo-icon.png' %}" height=100% />
+        <img src="{% static 'images/logo-icon.png' %}" height="100%" />
         <div class="title-word">
             <h1>Cloud Drive</h1>
         </div>
@@ -19,6 +19,16 @@
         <div class="login-title">
             <div class="login-title-word">Log in</div>
         </div>
+
+        <!-- Exibindo mensagens de erro -->
+        {% if messages %}
+            <ul class="error-list" style="color: red;">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
         <form method="POST">
             {% csrf_token %}
             <div class="input-area username">
@@ -29,7 +39,7 @@
                 <h3>Password</h3>
                 <input type="password" name="password" placeholder="password" required class="input-window">
             </div>
-            <button class="login-btn">login</button>
+            <button class="login-btn" type="submit">Login</button>
             <a href="{% url 'register' %}" class="signup-btn">I don't have an account</a>
         </form>
     </div>
