@@ -1,11 +1,53 @@
 <!DOCTYPE html>
+{% load static %}
+
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar</title>
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+    <title>Registration</title>
 </head>
-<body>
+<body class="base">
+    <div class="title">
+        <img src="{% static 'images/logo-icon.png' %}" height=100% />
+        <div class="title-word">
+            <h1>Cloud Drive</h1>
+        </div>
+    </div>
+    <div class="signup-window">
+        <div class="signup-title">
+            <div class="signup-title-word">Registration</div>
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="input-area username">
+                <h3>Username</h3>
+                <input type="text" placeholder="username" class="input-window" />
+                <ul type="circle">
+                    <li>150 characters or less. Letters, numbers, and @/./+/-/_ only.</li>
+                </ul>
+            </div>
+            <div class="input-area password">
+                <h3>Password</h3>
+                <input type="text" placeholder="password" class="input-window" />
+                <ul type="circle">
+                    <li>
+                    Your password cannot be too similar to the rest of your personal
+                    information.
+                    </li>
+                    <li>Your password must contain at least 8 characters.</li>
+                    <li>Your password cannot be a commonly used password.</li>
+                    <li>Your password cannot be entirely numeric.</li>
+                </ul>
+                <button class="signup-btn">signup</button>
+                <a href="{% url 'user_login' %}" class="login-btn">I've had an account</a>
+            </div>
+        </form>
+    </div>
+</body>
+
+{% comment %} <body>
     <h1>Criar uma Conta</h1>
     <form method="POST">
         {% csrf_token %}
@@ -25,5 +67,5 @@
         {% endfor %}
         </ul>
     {% endif %}
-</body>
+</body> {% endcomment %}
 </html>
