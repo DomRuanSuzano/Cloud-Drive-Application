@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
 
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
 </head>
 <body class="base">
     <div class="title">
-        <img src="{% static 'images/logo-icon.png' %}" height=100% />
+        <img src="{% static 'images/logo-icon.png' %}" class="title-icon" height="100%" />
         <div class="title-word">
             <h1>Cloud Drive</h1>
         </div>
@@ -19,53 +19,28 @@
         <div class="signup-title">
             <div class="signup-title-word">Registration</div>
         </div>
+        
+        <!-- Formulário Django restaurado -->
         <form method="POST">
             {% csrf_token %}
-            <div class="input-area username">
-                <h3>Username</h3>
-                <input type="text" placeholder="username" class="input-window" />
-                <ul type="circle">
-                    <li>150 characters or less. Letters, numbers, and @/./+/-/_ only.</li>
-                </ul>
-            </div>
-            <div class="input-area password">
-                <h3>Password</h3>
-                <input type="text" placeholder="password" class="input-window" />
-                <ul type="circle">
-                    <li>
-                    Your password cannot be too similar to the rest of your personal
-                    information.
-                    </li>
-                    <li>Your password must contain at least 8 characters.</li>
-                    <li>Your password cannot be a commonly used password.</li>
-                    <li>Your password cannot be entirely numeric.</li>
-                </ul>
-                <button class="signup-btn">signup</button>
-                <a href="{% url 'user_login' %}" class="login-btn">I've had an account</a>
-            </div>
+            {{ form.as_p }}
+
+            <button class="signup-btn" type="submit">register</button>
+            <a href="{% url 'user_login' %}" class="login-btn">I already have an account</a>
         </form>
+
+        {% if form.errors %}
+            <ul style="color: red;">
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+                {% for error in form.non_field_errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
     </div>
 </body>
-
-{% comment %} <body>
-    <h1>Criar uma Conta</h1>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}  <!-- Renderiza o formulário automaticamente -->
-        <button type="submit">Registrar</button> <!-- Botão para enviar o formulário -->
-    </form>
-
-    {% if form.errors %}
-        <ul>
-        {% for field in form %}
-            {% for error in field.errors %}
-                <li style="color: red;">{{ error }}</li>
-            {% endfor %}
-        {% endfor %}
-        {% for error in form.non_field_errors %}
-            <li style="color: red;">{{ error }}</li>
-        {% endfor %}
-        </ul>
-    {% endif %}
-</body> {% endcomment %}
 </html>
