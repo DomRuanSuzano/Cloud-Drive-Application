@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Info</title>
+    <link rel="stylesheet" href="{% static 'css/data.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="account-info">
+        <div class="user-details">
+            <img src="{% static 'images/user-avatar.png' %}" alt="User Avatar">
+            <h2>{{ user.username }}</h2>
+            <p>{{ user.email }}</p>
+        </div>
+
+        <div class="statistics">
+            <h3>Your Statistics</h3>
+            <div class="charts">
+                <!-- Space for charts -->
+                <canvas id="fileTypeChart"></canvas>
+                <canvas id="storageUsageChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/account_info.js' %}"></script>
+</body>
+</html>

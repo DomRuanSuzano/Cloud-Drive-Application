@@ -10,7 +10,6 @@
 </head>
 <body class="base">
     <div class="title">
-        <!-- Ícone adicionado aqui -->
         <img src="{% static 'images/logo-icon.png' %}" class="title-icon" height="100%" />
         <div class="title-word">
             <h1>Cloud Drive</h1>
@@ -48,6 +47,7 @@
 
                 <h3>Upload File</h3>
                 <input type="file" name="file" accept="image/*,video/*,audio/*" required>
+                <small>Maximum file size: 40 MB</small>
 
                 <button class="upload-btn" type="submit">Upload</button>
             </div>
@@ -76,7 +76,7 @@
             <h3>Files</h3>
             {% for file in files %}
                 <div class="file-item">
-                    <a href="{{ file.file.url }}" download>{{ file.file.name }}</a>
+                    <a href="{% url 'serve_user_file' file.id %}">{{ file.file.name }}</a>
                     <span>Size: {{ file.size }} bytes</span>
                     <span>Folder: {{ file.folder.get_full_path }}</span>
                 </div>
